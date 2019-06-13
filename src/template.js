@@ -49,12 +49,28 @@ QueryBuilder.templates.rule = '\
   <div class="rule-value-container"></div> \
 </div>';
 
+// QueryBuilder.templates.filterSelect = '\
+// {{ var optgroup = null; }} \
+// <select class="form-control" name="{{= it.rule.id }}_filter"> \
+//   {{? it.settings.display_empty_filter }} \
+//     <option value="-1">{{= it.settings.select_placeholder }}</option> \
+//   {{?}} \
+//   {{~ it.filters: filter }} \
+//     {{? optgroup !== filter.optgroup }} \
+//       {{? optgroup !== null }}</optgroup>{{?}} \
+//       {{? (optgroup = filter.optgroup) !== null }} \
+//         <optgroup label="{{= it.translate(it.settings.optgroups[optgroup]) }}"> \
+//       {{?}} \
+//     {{?}} \
+//     <option value="{{= filter.id }}" {{? filter.icon}}data-icon="{{= filter.icon}}"{{?}}>{{= it.translate(filter.label) }}</option> \
+//   {{~}} \
+//   {{? optgroup !== null }}</optgroup>{{?}} \
+// </select>';
+
 QueryBuilder.templates.filterSelect = '\
 {{ var optgroup = null; }} \
-<select class="form-control" name="{{= it.rule.id }}_filter"> \
-  {{? it.settings.display_empty_filter }} \
-    <option value="-1">{{= it.settings.select_placeholder }}</option> \
-  {{?}} \
+<input class="form-control" list="{{= it.rule.id}}_filter" name="{{= it.rule.id}}_filter"/> \
+<datalist id="{{= it.rule.id}}_filter"> \
   {{~ it.filters: filter }} \
     {{? optgroup !== filter.optgroup }} \
       {{? optgroup !== null }}</optgroup>{{?}} \
@@ -65,7 +81,8 @@ QueryBuilder.templates.filterSelect = '\
     <option value="{{= filter.id }}" {{? filter.icon}}data-icon="{{= filter.icon}}"{{?}}>{{= it.translate(filter.label) }}</option> \
   {{~}} \
   {{? optgroup !== null }}</optgroup>{{?}} \
-</select>';
+</datalist>';
+
 
 QueryBuilder.templates.operatorSelect = '\
 {{? it.operators.length === 1 }} \
