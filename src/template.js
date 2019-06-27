@@ -83,7 +83,6 @@ QueryBuilder.templates.filterSelect = '\
   {{? optgroup !== null }}</optgroup>{{?}} \
 </datalist>';
 
-
 QueryBuilder.templates.operatorSelect = '\
 {{? it.operators.length === 1 }} \
 <span> \
@@ -104,9 +103,28 @@ QueryBuilder.templates.operatorSelect = '\
   {{? optgroup !== null }}</optgroup>{{?}} \
 </select>';
 
+// QueryBuilder.templates.ruleValueSelect = '\
+// {{ var optgroup = null; }} \
+// <select class="form-control" name="{{= it.name }}" {{? it.rule.filter.multiple }}multiple{{?}}> \
+//   {{? it.rule.filter.placeholder }} \
+//     <option value="{{= it.rule.filter.placeholder_value }}" disabled selected>{{= it.rule.filter.placeholder }}</option> \
+//   {{?}} \
+//   {{~ it.rule.filter.values: entry }} \
+//     {{? optgroup !== entry.optgroup }} \
+//       {{? optgroup !== null }}</optgroup>{{?}} \
+//       {{? (optgroup = entry.optgroup) !== null }} \
+//         <optgroup label="{{= it.translate(it.settings.optgroups[optgroup]) }}"> \
+//       {{?}} \
+//     {{?}} \
+//     <option value="{{= entry.value }}">{{= entry.label }}</option> \
+//   {{~}} \
+//   {{? optgroup !== null }}</optgroup>{{?}} \
+// </select>';
+
 QueryBuilder.templates.ruleValueSelect = '\
 {{ var optgroup = null; }} \
-<select class="form-control" name="{{= it.name }}" {{? it.rule.filter.multiple }}multiple{{?}}> \
+<input class="form-control" list="{{= it.name }}_value" name="{{= it.name }}"/> \
+<datalist id="{{= it.name }}_value"> \
   {{? it.rule.filter.placeholder }} \
     <option value="{{= it.rule.filter.placeholder_value }}" disabled selected>{{= it.rule.filter.placeholder }}</option> \
   {{?}} \
@@ -120,7 +138,7 @@ QueryBuilder.templates.ruleValueSelect = '\
     <option value="{{= entry.value }}">{{= entry.label }}</option> \
   {{~}} \
   {{? optgroup !== null }}</optgroup>{{?}} \
-</select>';
+</datalist>';
 
 /**
  * Returns group's HTML

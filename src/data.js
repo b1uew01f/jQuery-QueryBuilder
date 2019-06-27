@@ -405,7 +405,8 @@ QueryBuilder.prototype.getRuleInputValue = function(rule) {
                         value.push(tmp);
                     }
                     else {
-                        value.push($value.find('[name=' + name + '] option:selected').val());
+                        // value.push($value.find('[name=' + name + '] option:selected').val());
+                        value.push($value.find('[name=' + name + ']').val());
                     }
                     break;
 
