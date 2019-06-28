@@ -343,7 +343,9 @@ QueryBuilder.extend(/** @lends module:plugins.SqlSupport.prototype */ {
                      */
                     var field = self.change('getSQLField', rule.field, rule);
 
-                    var ruleExpression = field + ' ' + sqlFn(value);
+                    var ruleExpression = rule.type === 'string' && rule.input === 'text' ?
+                        'UPPER(' + field + ')' + sqlFn('UPPER(' + value + ')') :
+                        field + ' ' + sqlFn(value);
 
                     /**
                      * Modifies the SQL generated for a rule
