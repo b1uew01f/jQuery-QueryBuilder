@@ -343,8 +343,8 @@ QueryBuilder.extend(/** @lends module:plugins.SqlSupport.prototype */ {
                      */
                     var field = self.change('getSQLField', rule.field, rule);
 
-                    var ruleExpression = rule.type === 'string' && rule.input === 'text' ?
-                        'UPPER(' + field + ')' + sqlFn('UPPER(' + value + ')') :
+                    var ruleExpression = rule.type === 'string' && (rule.input === 'text' || rule.input === 'select') ?
+                        'LOWER(' + field + ')' + sqlFn('LOWER(' + value + ')') :
                         field + ' ' + sqlFn(value);
 
                     /**
